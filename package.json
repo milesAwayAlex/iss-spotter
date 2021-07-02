@@ -1,0 +1,23 @@
+{
+  "name": "iss-spotter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.mjs",
+  "scripts": {
+    "start": "node index.mjs",
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/milesAwayAlex/iss-spotter.git"
+  },
+  "author": "AX",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/milesAwayAlex/iss-spotter/issues"
+  },
+  "homepage": "https://github.com/milesAwayAlex/iss-spotter#readme",
+  "dependencies": {
+    "native-request": "^1.0.8"
+  }
+}
