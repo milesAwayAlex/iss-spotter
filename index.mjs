@@ -1,4 +1,4 @@
-import getTimes from './nextISSTimesForMyLocation.mjs';
+import {getTimes} from './nextISSTimesForMyLocation.mjs';
 
 getTimes((err, data) => {
   if (err) return console.log('ERROR:', err);

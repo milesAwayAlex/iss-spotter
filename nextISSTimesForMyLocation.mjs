@@ -1,11 +1,12 @@
-import f from './fetch.mjs';
+import {fetch as f, fetchPr} from './fetch.mjs';
 
-export default cb => {
-  const apis = {
-    ip: 'https://api.ipify.org/?format=json',
-    geo: 'https://freegeoip.app/json/',
-    pass: ['http://api.open-notify.org/iss-pass.json?lat=', '&lon='],
-  };
+const apis = {
+  ip: 'https://api.ipify.org/?format=json',
+  geo: 'https://freegeoip.app/json/',
+  pass: ['http://api.open-notify.org/iss-pass.json?lat=', '&lon='],
+};
+
+const getTimes = cb => {
   f(apis.ip, (err, ipObj) => {
     if (err) {
       cb(err, null);
@@ -29,3 +30,13 @@ export default cb => {
     });
   });
 };
+
+const getPromise = () =>
+  fetchPr(apis.ip)
+    .then(data => fetchPr(apis.geo + data.ip))
+    .then(data =>
+      fetchPr(apis.pass[0] + data.latitude + apis.pass[1] + data.longitude)
+    )
+    .then(data => data.response);
+
+export {getTimes, getPromise};
