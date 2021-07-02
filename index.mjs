@@ -1,6 +1,13 @@
-import getIp from './fetch.mjs';
+import f from './fetch.mjs';
 
-getIp((err, ip) => {
+const api = {
+  ip: 'https://api.ipify.org/?format=json',
+  geo: 'https://freegeoip.app/json/',
+};
+
+f(api.ip, (err, ipObj) => {
   if (err) throw err;
-  console.log(ip);
+  f(api.geo + ipObj.ip, (err, data) => {
+    console.log(err, data);
+  });
 });
